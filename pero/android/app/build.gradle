@@ -47,11 +47,18 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 20
         targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode 2
+        versionName '1.0.0'
         multiDexEnabled true
     }
-
+    signingConfigs {
+        release {
+            keyAlias 'Pero'
+            keyPassword 'cskmpces12'
+            storeFile file("keystore_pero.jks")
+            storePassword 'cskmpces12'
+        }
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
