@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
+            foregroundColor: Colors.white,
             automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             elevation: 0,

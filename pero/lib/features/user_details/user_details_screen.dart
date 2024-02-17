@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pero/features/user_details/user_details_bloc.dart';
+import 'package:pero/utils/app_colors.dart';
+import 'package:pero/utils/app_constants.dart';
+import 'package:pero/utils/app_strings.dart';
+import 'package:pero/utils/common_methods.dart';
 
 // region UserDetailsScreen
 class UserDetailsScreen extends StatefulWidget {
@@ -40,7 +44,9 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.black, centerTitle: true, title: const Text("Welcome")), backgroundColor: Colors.white, body: body());
+        appBar: AppBar(backgroundColor: Colors.black, foregroundColor: Colors.white, centerTitle: true, title: const Text("Welcome")),
+        backgroundColor: Colors.white,
+        body: body());
   }
 
   // endregion
@@ -52,6 +58,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         padding: const EdgeInsets.all(20),
         shrinkWrap: true,
         children: [
+           Text(AppStrings.enterRoom, style: TextStyle(fontSize: 16)),
+          const SizedBox(height: 10),
           TextField(
               controller: userDetailsBloc.roomNumberCtrl,
               maxLength: 5,
@@ -80,6 +88,22 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 border: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
                 focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.black, width: 2)),
               )),
+          Row(
+            children: [
+              ValueListenableBuilder<bool>(
+                  valueListenable: userDetailsBloc.checkCtrl,
+                  builder: (context, snapshot, _) {
+                    return Checkbox(activeColor: Colors.black, value: snapshot, onChanged: (value) => userDetailsBloc.onCheck(value!));
+                  }),
+              const Text("I agree to the ", style: TextStyle(fontSize: 16)),
+              InkWell(
+                  onTap: () => CommonMethods.openUrl(AppConstants.terms),
+                  child: const Text(
+                    "Terms and Conditions",
+                    style: TextStyle(decoration: TextDecoration.underline, fontSize: 16),
+                  ))
+            ],
+          ),
           submit()
         ],
       ),

@@ -20,7 +20,7 @@ class UserDetailsBloc {
 
   // region Controller
   final validCtrl = StreamController<bool>.broadcast();
-
+  final checkCtrl = ValueNotifier(true);
   // endregion
 
   // region | Constructor |
@@ -69,9 +69,16 @@ class UserDetailsBloc {
 
   // endregion
 
+  // region onCheck
+  void onCheck(bool value){
+    checkCtrl.value = value;
+    onChangeText();
+  }
+  // endregion
+
   // region onChangeRoom
   void onChangeText(){
-    var isValid = nameTextCtrl.text.isNotEmpty && roomNumberCtrl.text.isNotEmpty;
+    var isValid = nameTextCtrl.text.isNotEmpty && roomNumberCtrl.text.isNotEmpty && checkCtrl.value;
     if(!validCtrl.isClosed) validCtrl.sink.add(isValid);
   }
   // endregion

@@ -45,6 +45,7 @@ dependencies:
   painter: ^2.0.0
   youtube_player_flutter: ^8.1.2
   flutter_svg: ^2.0.9
+  url_launcher: ^6.2.4
 
 dev_dependencies:
   flutter_test:
